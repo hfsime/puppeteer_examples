@@ -1,8 +1,7 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-    const browser = await puppeteer.launch({headless:false, userDataDir:'D:\\data\\'});
-    console.log('start browser');
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     try {
         await page.setViewport({ width: 1920, height: 1080 });
