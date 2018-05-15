@@ -10,7 +10,6 @@ const puppeteer = require('puppeteer');
         console.log(error.message);
     }
     await page.close();
-    await Sleep(5000);
     await browser.close();
 })();
 
