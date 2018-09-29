@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
     try {
         await page.setViewport({ width: 1920, height: 1080 });
         await page.goto('https://www.x23us.com/', { waitUntil: 'load' });
-        await fullScreenshot(page, 'x23us.jpg');
+        await full_screenshot0(page, 'x23us.jpg');
     } catch (error) {
         console.log(error.message);
     }
@@ -14,7 +14,8 @@ const puppeteer = require('puppeteer');
     await browser.close();
 })();
 
-async function fullScreenshot(page, savePath) {
+async function full_screenshot0(page, save_path) {
+    //js scroll
     let scrollEnable = true;
     let scrollStep = 100;
     while (scrollEnable) {
@@ -28,14 +29,14 @@ async function fullScreenshot(page, savePath) {
     await page.screenshot({ path: savePath, fullPage: true });
 }
 
+async function full_screenshot1(page, save_path, mouse_click_selector) {
+    //mouse and keyboard mock
+    let areaElement = await page.$(mouse_click_selector);
+    let bound = await areaElement.boundingBox();
+    await page.mouse.click(bound.x + 1, bound.y + 1);
+    await page.keyboard.press('End', { delay: 2000 });
+}
+
 function sleep(delay) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            try {
-                resolve(1);
-            } catch (e) {
-                reject(0);
-            }
-        }, delay);
-    });
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
